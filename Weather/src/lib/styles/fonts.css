@@ -1,0 +1,26 @@
+/* dm-sans-variable */
+@font-face {
+	font-display: swap;
+	font-family: 'DM Sans';
+	font-style: normal;
+	font-weight: 300 700;
+	src: url('$lib/fonts/dmsans-variable.woff2') format('woff2-variations');
+}
+
+/* dm-sans-600italic */
+@font-face {
+	font-display: swap;
+	font-family: 'DM Sans';
+	font-style: italic;
+	font-weight: 600;
+	src: url('$lib/fonts/dmsans-600-italic.woff2') format('woff2');
+}
+
+/* bricolage-grotesque-700 - latin */
+@font-face {
+	font-display: swap;
+	font-family: 'Bricolage Grotesque';
+	font-style: normal;
+	font-weight: 700;
+	src: url('$lib/fonts/bricolage-grotesque-700.woff2') format('woff2');
+}
