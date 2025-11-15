@@ -2,15 +2,24 @@
 	import Current from '$lib/components/Current.svelte';
 	import DailyForecast from '$lib/components/DailyForecast.svelte';
 	import HourlyForecast from '$lib/components/HourlyForecast.svelte';
+	import { fade } from 'svelte/transition';
+	import { page } from '$app/state';
 
 	let { data } = $props();
 </script>
 
-<section class="dashboard" aria-label="Weather dashboard">
-	<Current location={data.location} date={data.date} current={data.current} />
-	<DailyForecast daily={data.daily} />
-	<HourlyForecast hourly={data.hourly} />
-</section>
+{#key page.url.pathname}
+	<section
+		class="dashboard"
+		aria-label="Weather dashboard"
+		in:fade={{ duration: 500 }}
+		out:fade={{ duration: 300 }}
+	>
+		<Current location={data.location} date={data.date} current={data.current} />
+		<DailyForecast daily={data.daily} />
+		<HourlyForecast hourly={data.hourly} />
+	</section>
+{/key}
 
 <style>
 	.dashboard {
