@@ -1,5 +1,6 @@
 <script lang="ts">
 	import CurrentMain from '$lib/components/ui/CurrentMain.svelte';
+	import CurrentInfo from '$lib/components/ui/CurrentInfo.svelte';
 
 	let { location, date, current } = $props();
 </script>
@@ -11,10 +12,24 @@
 		weatherCode={current.weatherCode}
 		temperature={current.temperature}
 	/>
+	<div class="info">
+		<CurrentInfo text="Feels Like" value={current.feelsLike} unit="&deg;C" />
+		<CurrentInfo text="Humidity" value={current.humidity} unit="%" />
+		<CurrentInfo text="Wind" value={current.wind} unit=" km/h" />
+		<CurrentInfo text="Precipitation" value={current.precipitation} unit=" mm" />
+	</div>
 </section>
 
 <style>
 	.current-weather {
-		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+
+		.info {
+			display: flex;
+			gap: 1.5rem;
+			align-items: center;
+		}
 	}
 </style>
