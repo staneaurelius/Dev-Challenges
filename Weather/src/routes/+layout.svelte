@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import Header from '$lib/components/Header.svelte';
+	import SearchForm from '$lib/components/SearchForm.svelte';
 
 	let { children } = $props();
 </script>
@@ -8,7 +9,7 @@
 <Header />
 <main>
 	<h1>How's the sky looking today?</h1>
-
+	<SearchForm />
 	{@render children()}
 </main>
 
