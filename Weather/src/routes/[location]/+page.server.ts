@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import dayList from '$lib/utils/dayList.js';
 import getTime from '$lib/utils/getTime.js';
+import toTitleCase from '$lib/utils/toTitleCase.js';
 
 export async function load({ fetch, params, url, setHeaders }) {
 	const location = params.location;
@@ -26,7 +27,7 @@ export async function load({ fetch, params, url, setHeaders }) {
 	});
 
 	return {
-		location: `${location}, ${country}`,
+		location: `${toTitleCase(location)}, ${toTitleCase(country)}`,
 		date: new Intl.DateTimeFormat('en-US', {
 			weekday: 'short',
 			month: 'short',
