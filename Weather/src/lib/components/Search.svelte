@@ -1,14 +1,31 @@
 <script>
+	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import SearchBar from '$lib/components/ui/SearchBar.svelte';
+	import searchStore from '$lib/stores/searchStore.svelte';
+
+	const handleClick = () => {
+		if (searchStore.query.length > 2 && searchStore.results) {
+			const dest = searchStore.results[0];
+			goto(
+				resolve(
+					`/${dest.name}?lat=${dest.latitude}&long=${dest.longitude}&country=${dest.country}`
+				),
+				{ noScroll: true }
+			);
+			searchStore.query = '';
+			searchStore.results = [];
+		}
+	};
 </script>
 
-<form method="GET" action="">
+<div>
 	<SearchBar />
-	<button type="submit">Search</button>
-</form>
+	<button type="button" onclick={handleClick}>Search</button>
+</div>
 
 <style>
-	form {
+	div {
 		width: 50%;
 		display: flex;
 		gap: 1rem;

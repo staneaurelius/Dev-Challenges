@@ -1,10 +1,54 @@
 <script lang="ts">
 	import searchIcon from '$lib/assets/icon-search.svg';
+	import searchStore from '$lib/stores/searchStore.svelte';
+	import SearchDrop from '$lib/components/ui/SearchDrop.svelte';
+
+	let debounceTimer: ReturnType<typeof setTimeout>;
+	let searchContainer: HTMLDivElement;
+
+	const handleInput = () => {
+		if (searchStore.query.length > 2) {
+			searchStore.isOpen = true;
+		} else {
+			searchStore.isOpen = false;
+		}
+
+		clearTimeout(debounceTimer);
+		debounceTimer = setTimeout(() => {
+			searchStore.search();
+		}, 300);
+	};
+
+	const handleFocusOut = (e: FocusEvent) => {
+		const target = e.relatedTarget as Node;
+		if (!searchContainer.contains(target)) {
+			searchStore.isOpen = false;
+		}
+	};
+
+	const handleFocus = () => {
+		if (searchStore.query.length > 2) {
+			searchStore.isOpen = true;
+		}
+	};
 </script>
 
-<div class="search-container">
+<div class="search-container" bind:this={searchContainer}>
 	<img src={searchIcon} alt="search icon" aria-hidden="true" width="20" height="20" />
-	<input name="location" type="text" placeholder="Search for a place..." />
+	<input
+		name="location"
+		type="text"
+		placeholder="Search for a place..."
+		bind:value={searchStore.query}
+		oninput={handleInput}
+		onfocus={handleFocus}
+		onfocusout={handleFocusOut}
+		autocomplete="off"
+	/>
+
+	{#if searchStore.isOpen}
+		<SearchDrop />
+	{/if}
 </div>
 
 <style>
@@ -19,7 +63,7 @@
 		border-radius: 12px;
 		transition: box-shadow ease-in-out 0.15s;
 
-		&:hover {
+		&:hover:not(:has(ul:hover)) {
 			background-color: rgb(var(--neutral-700));
 		}
 
