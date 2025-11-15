@@ -1,6 +1,7 @@
 <script>
 	import Current from '$lib/components/Current.svelte';
 	import DailyForecast from '$lib/components/DailyForecast.svelte';
+	import HourlyForecast from '$lib/components/HourlyForecast.svelte';
 
 	let { data } = $props();
 </script>
@@ -8,6 +9,7 @@
 <section class="dashboard" aria-label="Weather dashboard">
 	<Current location={data.location} date={data.date} current={data.current} />
 	<DailyForecast daily={data.daily} />
+	<HourlyForecast hourly={data.hourly} />
 </section>
 
 <style>
