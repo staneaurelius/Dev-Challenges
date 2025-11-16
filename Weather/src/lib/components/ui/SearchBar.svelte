@@ -94,4 +94,10 @@
 			color: rgb(var(--neutral-300));
 		}
 	}
+
+	@media (max-width: 767px) {
+		.search-container {
+			width: 100%;
+		}
+	}
 </style>

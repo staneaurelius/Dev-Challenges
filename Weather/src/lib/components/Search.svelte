@@ -53,4 +53,21 @@
 				0 0 0 5px rgb(var(--blue-500));
 		}
 	}
+
+	@media (max-width: 1439px) {
+		div {
+			width: 100%;
+		}
+	}
+
+	@media (max-width: 767px) {
+		div {
+			flex-direction: column;
+			gap: 0.75rem;
+
+			button {
+				width: 100%;
+			}
+		}
+	}
 </style>

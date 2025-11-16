@@ -10,4 +10,24 @@
 	header {
 		padding: 48px 112px;
 	}
+
+	@media (max-width: 1439px) {
+		header {
+			padding: 24px;
+
+			img {
+				height: 2.5rem;
+			}
+		}
+	}
+
+	@media (max-width: 767px) {
+		header {
+			padding: 16px;
+
+			img {
+				height: 1.75rem;
+			}
+		}
+	}
 </style>

@@ -31,4 +31,14 @@
 			gap: 1rem;
 		}
 	}
+
+	@media (max-width: 767px) {
+		.daily {
+			.cards {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1rem;
+			}
+		}
+	}
 </style>

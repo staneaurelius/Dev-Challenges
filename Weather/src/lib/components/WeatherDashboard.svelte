@@ -30,4 +30,12 @@
 		row-gap: 3rem;
 		column-gap: 2rem;
 	}
+
+	@media (max-width: 1439px) {
+		.dashboard {
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+		}
+	}
 </style>

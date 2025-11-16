@@ -32,4 +32,15 @@
 			align-items: center;
 		}
 	}
+
+	@media (max-width: 767px) {
+		.current-weather {
+			.info {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: 1fr 1fr;
+				gap: 1rem 1rem;
+			}
+		}
+	}
 </style>

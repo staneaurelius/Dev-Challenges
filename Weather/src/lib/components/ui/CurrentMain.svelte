@@ -1,5 +1,6 @@
 <script lang="ts">
 	import desktopBg from '$lib/assets/backgrounds/bg-today-large.svg';
+	import mobileBg from '$lib/assets/backgrounds/bg-today-small.svg';
 	import iconTranslator from '$lib/utils/WMOIcon';
 
 	interface Props {
@@ -16,13 +17,18 @@
 </script>
 
 <div class="main-card">
-	<img class="background" src={desktopBg} alt="" width="800" height="280" />
-	<div>
+	<picture>
+		<source media="(max-width: 767px)" srcset={mobileBg} />
+		<img src={desktopBg} alt="" aria-hidden="true" class="background" width="800" height="280" />
+	</picture>
+	<div class="location">
 		<p>{location}</p>
 		<p>{date}</p>
 	</div>
-	<img class="weather-icon" src={iconImg} alt={iconAlt} width="120" height="120" />
-	<p class="temperature">{temperature}</p>
+	<div class="weather">
+		<img class="weather-icon" src={iconImg} alt={iconAlt} width="120" height="120" />
+		<p class="temperature">{temperature}</p>
+	</div>
 </div>
 
 <style>
@@ -44,8 +50,8 @@
 			border-radius: 20px;
 		}
 
-		/* Left paragraphs */
-		div {
+		/* Left */
+		.location {
 			flex: 1;
 			display: flex;
 			flex-direction: column;
@@ -62,6 +68,13 @@
 			}
 		}
 
+		/* Right */
+		.weather {
+			display: flex;
+			gap: 1.25rem;
+			align-items: center;
+		}
+
 		/* Icon */
 		.weather-icon {
 			width: 7.5rem;
@@ -75,6 +88,23 @@
 			font-weight: 600;
 			letter-spacing: -0.02em;
 			line-height: 1;
+		}
+	}
+
+	@media (max-width: 767px) {
+		.main-card {
+			flex-direction: column;
+			gap: 1rem;
+			padding: 2.5rem 1.5rem;
+
+			.location {
+				text-align: center;
+			}
+
+			.weather {
+				gap: 0;
+				justify-content: space-between;
+			}
 		}
 	}
 </style>
