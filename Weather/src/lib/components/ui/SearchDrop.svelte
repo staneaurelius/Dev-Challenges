@@ -9,7 +9,13 @@
 	};
 </script>
 
-<ul role="listbox" aria-label="Search results">
+<ul
+	role="listbox"
+	aria-label="Search results"
+	onpointerdown={(e) => {
+		e.preventDefault();
+	}}
+>
 	{#if searchStore.isLoading}
 		<li>Search in progress...</li>
 	{:else}
